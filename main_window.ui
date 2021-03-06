@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>905</width>
+    <height>617</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Autobuilder 3.0</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QSplitter" name="views_splitter">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <widget class="QWidget" name="horizontalLayoutWidget">
+       <layout class="QHBoxLayout" name="Overlay">
+        <item>
+         <layout class="QVBoxLayout" name="Video">
+          <item>
+           <widget class="QWidget" name="VideoWidget" native="true"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="TimeConstraintLabel">
+            <property name="text">
+             <string>Time Constraint on Traffic Light: 30</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="TrafficInformationOverlay">
+          <item>
+           <layout class="QHBoxLayout" name="TrafficLightPedestrian">
+            <item>
+             <layout class="QVBoxLayout" name="EWtrafficLight">
+              <item>
+               <widget class="QLabel" name="EWTrafficLightLabel">
+                <property name="text">
+                 <string>East/West Traffic Light</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="TrafficLightEW" native="true"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="NSTrafficLight">
+              <item>
+               <widget class="QLabel" name="NSTrafficLightLabel">
+                <property name="text">
+                 <string>North/South Traffic Light</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="TrafficLightNS" native="true"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_2">
+              <item>
+               <widget class="QLabel" name="EWPedSignalLabel">
+                <property name="text">
+                 <string>East/West Pedestrian Signal</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="PedestrianSignalEW" native="true"/>
+              </item>
+             </layout>
+            </item>
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QLabel" name="NSPedSignalLabel">
+                <property name="text">
+                 <string>North/South Pedestrian Signal</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QWidget" name="PedestrianSIgnalNS" native="true"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QVBoxLayout" name="TrafficInformationSummary">
+            <item>
+             <widget class="QLabel" name="NumberofPedestrians">
+              <property name="text">
+               <string># of Pedestrians Currently Moving E/W</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="NumberofPedestrianNS">
+              <property name="text">
+               <string># of Pedestrians Currently Moving N/S </string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="NumberPedestrianEW">
+              <property name="text">
+               <string># of Cars Waiting</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="EnviromentalCondition">
+              <property name="text">
+               <string>Environmental Condition </string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <action name="action_Save">
+   <property name="text">
+    <string>Save File...</string>
+   </property>
+  </action>
+  <action name="action_Open">
+   <property name="text">
+    <string>Open File...</string>
+   </property>
+  </action>
+  <action name="action_FloorPlan">
+   <property name="text">
+    <string>Floor Plan</string>
+   </property>
+  </action>
+  <action name="action_BracingScheme">
+   <property name="text">
+    <string>Bracing Scheme</string>
+   </property>
+  </action>
+  <action name="action_DesignVariable">
+   <property name="text">
+    <string>Design Variable</string>
+   </property>
+  </action>
+  <action name="action_AssignVariable">
+   <property name="text">
+    <string>Assign Variable</string>
+   </property>
+  </action>
+  <action name="action_GenerateTowers">
+   <property name="text">
+    <string>Generate Towers</string>
+   </property>
+  </action>
+  <action name="action_RunTowers">
+   <property name="text">
+    <string>Run Towers</string>
+   </property>
+  </action>
+  <action name="action_ProjectSettings">
+   <property name="text">
+    <string>Project Settings</string>
+   </property>
+  </action>
+  <action name="action_GeneratePanelsFromFloorPlans">
+   <property name="text">
+    <string>Generate Panels from Floor Plans</string>
+   </property>
+  </action>
+  <action name="action_Panel">
+   <property name="text">
+    <string>Panel</string>
+   </property>
+  </action>
+  <action name="action_GPFromFloorPlan">
+   <property name="text">
+    <string>With Floor Plan</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
