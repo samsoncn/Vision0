@@ -43,17 +43,22 @@ class MainWindow(QMainWindow):
 
     @pyqtSlot(int)
     def updateLights(self, num):
-
         if num:
             self.PedestrianSignalEW.turnGreen()
             self.TrafficLightEW.turnRed()
+            self.PedestrianSignalNS.turnRed()
+            self.TrafficLightNS.turnGreen()
 
         else:
             self.PedestrianSignalEW.turnRed()
             self.TrafficLightEW.turnGreen()
+            self.PedestrianSignalNS.turnGreen()
+            self.TrafficLightNS.turnRed()
 
         self.TrafficLightEW.update()
         self.PedestrianSignalEW.update()
+        self.PedestrianSignalNS.update()
+        self.TrafficLightNS.update()
 
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)
