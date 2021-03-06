@@ -3,13 +3,15 @@ from detect import detector
 
 cap = cv2.VideoCapture('./testing/video.mp4')
 
-frameTime = 10
-
 while (cap.isOpened()):
     ret, frame = cap.read()
+    # print(frame)
+    # print(fps)
     frame = detector(frame)
 
-    if cv2.waitKey(frameTime) & 0xFF == ord('q'):
+    if cv2.waitKey(1) == 13:
+        break
+    if frame is None:
         break
     
 cap.release()
