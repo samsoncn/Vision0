@@ -22,13 +22,9 @@ class MainWindow(QMainWindow):
         uic.loadUi(fileh, self)
         fileh.close()
 
-        self.PedestrianSignalEW.turnGreen()
-        self.PedestrianSignalNS.turnRed()
-        self.TrafficLightNS.turnGreen()
-        self.TrafficLightEW.turnRed()
-
         th = Thread(self)
         th.changePixmap.connect(self.setImage)
+        th.numPeople.connect(self.updateLights)
         th.start()
         self.show()
 
@@ -45,8 +41,23 @@ class MainWindow(QMainWindow):
     def setImage(self, image):
         self.VideoLabel.setPixmap(QPixmap.fromImage(image))
 
+    @pyqtSlot(int)
+    def updateLights(self, num):
+
+        if num:
+            self.PedestrianSignalEW.turnGreen()
+            self.TrafficLightEW.turnRed()
+
+        else:
+            self.PedestrianSignalEW.turnRed()
+            self.TrafficLightEW.turnGreen()
+
+        self.TrafficLightEW.update()
+        self.PedestrianSignalEW.update()
+
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)
+    numPeople = pyqtSignal(int)
 
     def run(self):
         cap = cv2.VideoCapture('./testing/video.mp4')
@@ -55,7 +66,10 @@ class Thread(QThread):
 
         while (cap.isOpened()):
             ret, frame = cap.read()
-            frame = detector(frame)
+
+            frame, n = detector(frame)
+
+            self.numPeople.emit(n)
 
             rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             h, w, ch = rgbImage.shape
