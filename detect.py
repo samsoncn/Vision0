@@ -21,7 +21,6 @@ def detector(frame):
 
         c += 1
 
-        # cv2.putText
-        cv2.imshow('Output', frame)
-        return frame
+    # cv2.putText
+    return frame
 

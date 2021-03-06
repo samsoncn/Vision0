@@ -25,7 +25,11 @@
         <item>
          <layout class="QVBoxLayout" name="Video">
           <item>
-           <widget class="QWidget" name="VideoWidget" native="true"/>
+           <widget class="QLabel" name="VideoLabel">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QLabel" name="TimeConstraintLabel">
