@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Autobuilder 3.0</string>
+   <string>Vision0</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -50,7 +50,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QWidget" name="TrafficLightEW" native="true"/>
+               <widget class="TrafficLight" name="TrafficLightEW" native="true"/>
               </item>
              </layout>
             </item>
@@ -64,7 +64,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QWidget" name="TrafficLightNS" native="true"/>
+               <widget class="TrafficLight" name="TrafficLightNS" native="true"/>
               </item>
              </layout>
             </item>
@@ -78,7 +78,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QWidget" name="PedestrianSignalEW" native="true"/>
+               <widget class="PedestrianLight" name="PedestrianSignalEW" native="true"/>
               </item>
              </layout>
             </item>
@@ -92,7 +92,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QWidget" name="PedestrianSIgnalNS" native="true"/>
+               <widget class="PedestrianLight" name="PedestrianSignalNS" native="true"/>
               </item>
              </layout>
             </item>
@@ -199,6 +199,20 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TrafficLight</class>
+   <extends>QWidget</extends>
+   <header location="global">TrafficLight</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>PedestrianLight</class>
+   <extends>QWidget</extends>
+   <header location="global">TrafficLight</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
