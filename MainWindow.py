@@ -4,6 +4,7 @@ from PyQt5.QtGui import *       # extends QtCore with GUI functionality
 from PyQt5 import uic
 
 from TrafficLight import *
+from VideoWidget import * 
 
 import sys
 import os
@@ -18,6 +19,8 @@ class MainWindow(QMainWindow):
         fileh.open(QFile.ReadOnly)
         uic.loadUi(fileh, self)
         fileh.close()
+
+        self.VideoWidget = VideoWindow()
 
         self.PedestrianSignalEW.turnGreen()
         self.PedestrianSignalNS.turnRed()
