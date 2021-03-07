@@ -89,7 +89,7 @@ class Thread(QThread):
     numPeople = pyqtSignal(dict)
 
     def run(self):
-        cap = cv2.VideoCapture('./testing/t3.mp4')
+        cap = cv2.VideoCapture('./testing/t33.mp4')
 
         while (cap.isOpened()):
             ret, frame = cap.read()
