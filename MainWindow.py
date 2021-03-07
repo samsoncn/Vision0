@@ -69,18 +69,28 @@ class MainWindow(QMainWindow):
     def updateTrafficState(self, data):
 
         # REYNOLD ------------------------------------------
-        numPed = 0
+        if 0 not in data.key():
+            numPed = 0
+        else:
+            numPed = data['0']
+        
+        if 2 not in data.key():
+            numCars = 0
+        else:
+            numCars = data['2']
+
 
         if (numPed > 0 and self.green) or (numPed == 0 and not(self.green)):
             self.counter = 0
         else:
             self.counter += 1
 
-        self.NumberofPedestrians.setText('# of Pedestrians Currently Moving E/W:  ' + str(num))
+        self.NumberofPedestrians.setText('# of Pedestrians Currently Moving E/W:  ' + str(numPed))
+        self.NumberCars.setText('# of Cars Currently Moving or in View:  ' + str(numCars))
 
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)
-    numPeople = pyqtSignal(int)
+    numPeople = pyqtSignal(dict)
 
     def run(self):
         cap = cv2.VideoCapture('./testing/t3(1).mp4')
