@@ -56,8 +56,7 @@ class MainWindow(QMainWindow):
         self.TrafficLightEW.update()
         self.PedestrianSignalEW.update()
         self.PedestrianSignalNS.update()
-        self.TrafficLightNS.update()
-
+        self.TrafficLightNS.update()        
 
     @pyqtSlot(QImage)
     def setImage(self, image):
@@ -69,6 +68,8 @@ class MainWindow(QMainWindow):
             self.counter = 0
         else:
             self.counter += 1
+
+        self.NumberofPedestrians.setText('# of Pedestrians Currently Moving E/W:  ' + str(num))
 
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)
@@ -88,7 +89,7 @@ class Thread(QThread):
             h, w, ch = rgbImage.shape
             bytesPerLine = ch * w
             convertToQtFormat = QImage(rgbImage.data, w, h, bytesPerLine, QImage.Format_RGB888)
-            p = convertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
+            p = convertToQtFormat.scaled(960, 720, Qt.KeepAspectRatio)
             self.changePixmap.emit(p)
 
             if cv2.waitKey(1) == 13:
