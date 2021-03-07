@@ -5,13 +5,11 @@ import imutils
 from imutils.video import FPS
 from imutils.video import VideoStream
 
-
-
 INPUT_FILE='testing/t3(1).mp4'
 OUTPUT_FILE='output.mp4'
 LABELS_FILE='data/coco.names'
-CONFIG_FILE='cfg/yolov3.cfg'
-WEIGHTS_FILE='bin/yolov3.weights'
+CONFIG_FILE='cfg/yolov2-tiny.cfg'
+WEIGHTS_FILE='bin/yolov2-tiny.weights'
 CONFIDENCE_THRESHOLD=0.3
 
 H=None
@@ -52,10 +50,6 @@ while True:
 	if W is None or H is None:
 		(H, W) = image.shape[:2]
 	layerOutputs = net.forward(ln)
-
-
-
-
 
 
 	# initialize our lists of detected bounding boxes, confidences, and

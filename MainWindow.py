@@ -6,7 +6,10 @@ from PyQt5 import uic
 from TrafficLight import * 
 
 import cv2
-from detect import detector
+#from detect import detector
+from test_detect import detector
+
+from collections import Counter
 
 import sys
 import os
@@ -62,9 +65,13 @@ class MainWindow(QMainWindow):
     def setImage(self, image):
         self.VideoLabel.setPixmap(QPixmap.fromImage(image))
 
-    @pyqtSlot(int)
-    def updateTrafficState(self, num):
-        if (num > 0 and self.green) or (num == 0 and not(self.green)):
+    @pyqtSlot(dict)
+    def updateTrafficState(self, data):
+
+        # REYNOLD ------------------------------------------
+        numPed = 0
+
+        if (numPed > 0 and self.green) or (numPed == 0 and not(self.green)):
             self.counter = 0
         else:
             self.counter += 1
@@ -81,9 +88,10 @@ class Thread(QThread):
         while (cap.isOpened()):
             ret, frame = cap.read()
 
-            frame, n = detector(frame)
+            frame, classIDs = detector(frame)
 
-            self.numPeople.emit(n)
+            # REYNOLD ------------------------------------------
+            self.numPeople.emit(Counter(classIDs))
 
             rgbImage = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
             h, w, ch = rgbImage.shape
