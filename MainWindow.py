@@ -69,15 +69,8 @@ class MainWindow(QMainWindow):
     def updateTrafficState(self, data):
 
         # REYNOLD ------------------------------------------
-        if 0 not in data.key():
-            numPed = 0
-        else:
-            numPed = data['0']
-        
-        if 2 not in data.key():
-            numCars = 0
-        else:
-            numCars = data['2']
+        numPed = data[0]
+        numCars = data[2]
 
 
         if (numPed > 0 and self.green) or (numPed == 0 and not(self.green)):
