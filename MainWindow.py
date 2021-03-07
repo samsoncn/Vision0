@@ -49,15 +49,15 @@ class MainWindow(QMainWindow):
 
         if self.green:
             self.PedestrianSignalEW.turnGreen()
-            self.TrafficLightEW.turnRed()
+            self.TrafficLightEW.turnGreen()
             self.PedestrianSignalNS.turnRed()
-            self.TrafficLightNS.turnGreen()
+            self.TrafficLightNS.turnRed()
 
         else:
             self.PedestrianSignalEW.turnRed()
-            self.TrafficLightEW.turnGreen()
+            self.TrafficLightEW.turnRed()
             self.PedestrianSignalNS.turnGreen()
-            self.TrafficLightNS.turnRed()
+            self.TrafficLightNS.turnGreen()
 
         self.TrafficLightEW.update()
         self.PedestrianSignalEW.update()
