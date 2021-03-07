@@ -1,12 +1,14 @@
 import cv2
 import numpy as np
 from imutils.object_detection import non_max_suppression
+import imutils 
 
 hog = cv2.HOGDescriptor()
 hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
 def detector(frame):
-    rect, weight = hog.detectMultiScale(frame, winStride=(2, 2), padding=(6, 6), scale=1.3)
+    frame = imutils.resize(frame, width=min(600, frame.shape[1]))
+    rect, weight = hog.detectMultiScale(frame, winStride=(6, 6), padding=(16, 16), scale=1.3)
     rect = np.array([[x, y, x + w, y + h] for (x, y, w, h) in rect])
     label = non_max_suppression(rect, probs=None, overlapThresh=0.65)
 

@@ -1,7 +1,7 @@
 import cv2
 from detect import detector
 
-cap = cv2.VideoCapture('./testing/video.mp4')
+cap = cv2.VideoCapture('./testing/t3.mp4')
 
 while (cap.isOpened()):
     ret, frame = cap.read()

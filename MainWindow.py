@@ -11,8 +11,9 @@ from detect import detector
 import sys
 import os
 
-class MainWindow(QMainWindow):
+DETECTION_TOLERANCE = 5
 
+class MainWindow(QMainWindow):
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs,)
 
@@ -22,28 +23,25 @@ class MainWindow(QMainWindow):
         uic.loadUi(fileh, self)
         fileh.close()
 
+        # traffic light control
+        self.counter = 0
+        self.green = True
+
         th = Thread(self)
         th.changePixmap.connect(self.setImage)
-        th.numPeople.connect(self.updateLights)
+        th.numPeople.connect(self.updateTrafficState)
         th.start()
-        self.show()
 
         # Update views -----------------------------
         timer  = QTimer(self)
-        timer.setInterval(20) # period in miliseconds
-        timer.timeout.connect(self.TrafficLightEW.update)
-        timer.timeout.connect(self.TrafficLightNS.update)
-        timer.timeout.connect(self.PedestrianSignalEW.update)
-        timer.timeout.connect(self.PedestrianSignalNS.update)
+        timer.timeout.connect(self.updateLights)
         timer.start()
 
-    @pyqtSlot(QImage)
-    def setImage(self, image):
-        self.VideoLabel.setPixmap(QPixmap.fromImage(image))
+    def updateLights(self):
+        if self.counter > DETECTION_TOLERANCE:
+            self.green = not(self.green)
 
-    @pyqtSlot(int)
-    def updateLights(self, num):
-        if num:
+        if self.green:
             self.PedestrianSignalEW.turnGreen()
             self.TrafficLightEW.turnRed()
             self.PedestrianSignalNS.turnRed()
@@ -60,14 +58,24 @@ class MainWindow(QMainWindow):
         self.PedestrianSignalNS.update()
         self.TrafficLightNS.update()
 
+
+    @pyqtSlot(QImage)
+    def setImage(self, image):
+        self.VideoLabel.setPixmap(QPixmap.fromImage(image))
+
+    @pyqtSlot(int)
+    def updateTrafficState(self, num):
+        if (num > 0 and self.green) or (num == 0 and not(self.green)):
+            self.counter = 0
+        else:
+            self.counter += 1
+
 class Thread(QThread):
     changePixmap = pyqtSignal(QImage)
     numPeople = pyqtSignal(int)
 
     def run(self):
-        cap = cv2.VideoCapture('./testing/video.mp4')
-
-        frameTime = 10
+        cap = cv2.VideoCapture('./testing/t3(1).mp4')
 
         while (cap.isOpened()):
             ret, frame = cap.read()
@@ -83,9 +91,10 @@ class Thread(QThread):
             p = convertToQtFormat.scaled(640, 480, Qt.KeepAspectRatio)
             self.changePixmap.emit(p)
 
-            if cv2.waitKey(frameTime) & 0xFF == ord('q'):
+            if cv2.waitKey(1) == 13:
                 break
-
+            if frame is None:
+                break
 
 def main():
     app = QApplication(sys.argv)
