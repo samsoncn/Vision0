@@ -23,6 +23,8 @@ def detector(frame):
 
     net = cv2.dnn.readNetFromDarknet(CONFIG_FILE, WEIGHTS_FILE)
 
+    #frame = imutils.resize(frame, width=min(700, frame.shape[1]))
+
     image = frame
     (H, W) = image.shape[:2]
 

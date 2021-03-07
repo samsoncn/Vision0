@@ -35,6 +35,9 @@ class MainWindow(QMainWindow):
         th.numPeople.connect(self.updateTrafficState)
         th.start()
 
+        self.NumberofPedestrians.setFont(QFont('Arial', 16))
+        self.NumberCars.setFont(QFont('Arial', 16))
+
         # Update views -----------------------------
         timer  = QTimer(self)
         timer.timeout.connect(self.updateLights)
@@ -86,7 +89,7 @@ class Thread(QThread):
     numPeople = pyqtSignal(dict)
 
     def run(self):
-        cap = cv2.VideoCapture('./testing/t3(1).mp4')
+        cap = cv2.VideoCapture('./testing/t3.mp4')
 
         while (cap.isOpened()):
             ret, frame = cap.read()
